@@ -81,5 +81,12 @@ class TestContent(unittest.TestCase):
 
         self.assertIs(type(result), dict)
 
+    def test_content_get_result_with_exception(self):
+
+        api_key = "test"
+        section = theguardian_content.Content(api_key)
+
+        self.assertRaises(TypeError, section.get_results, "some random text")
+
 if __name__ == "__main__":
     unittest.main()
