@@ -1,0 +1,123 @@
+"""
+The content endpoint (/search) returns
+all pieces of content in the API.
+"""
+import requests
+import copy
+
+
+class Content:
+
+    def __init__(self, api, **kwargs):
+        """
+        :param api: api_key
+        :param kwargs: optional header data
+        :return: None
+        """
+
+        self.base_url = "https://content.guardianapis.com/search"
+        self.__headers = {
+            "api-key": api,
+            "format": "json"
+        }
+        self.__request_response = None
+
+        if kwargs:
+            for key, value in kwargs.items():
+                self.__headers[key] = value
+
+    def __response(self, headers=None):
+
+        """
+        :param headers: optional header
+        :return: returns raw response.
+        """
+
+        if headers is None:
+            headers = self.__headers
+        else:
+            headers.update(self.__headers)
+
+        res = requests.get(self.base_url, headers)
+
+        return res
+
+    def get_request_response(self, headers=None):
+        """
+        :param headers: optional headers
+        :return: raw request response
+        """
+        self.__request_response = self.__response(headers)
+        return self.__request_response
+
+    def get_content_response(self, headers=None):
+        """
+        :param headers: optional header
+        :return: json content of the response for the request
+        """
+        self.get_request_response(headers)
+        return self.__request_response.json()
+
+    def response_headers(self, headers=None):
+
+        """
+        :param headers: optional header
+        :return: dict of header contents in the response
+        """
+
+        if self.__request_response:
+            response_content = copy.deepcopy(self.__request_response.json())
+        else:
+            self.get_request_response(headers)
+            response_content = copy.deepcopy(self.__request_response.json())
+
+        headers_content = response_content['response']
+        headers_content.pop("results")
+
+        return headers_content
+
+    def find_by_id(self, ids, **kwargs):
+
+        """
+        :param ids: Get the Content using its id. IDs are usually in the form
+        of url/section/YYYY/month/DD/name-of-article/
+        technology/2014/feb/17/flappy-bird-clones-apple-google
+
+        :param kwargs: optional headers
+        :return: dict
+        """
+
+        ids_and_options = self.__response_for_id(ids, **kwargs)
+        ids_and_options.update(self.__headers)
+
+        return self.__response(ids_and_options).json()
+
+    @staticmethod
+    def __response_for_id(ids, **kwargs):
+        """
+        :param ids: IDs are usually in the form
+        of url/section/YYYY/month/DD/name-of-article/
+
+        :param kwargs: optional headers
+        :return: dict
+        """
+
+        headers = {}
+
+        if ids and isinstance(ids, str):
+            headers["ids"] = ids
+        if kwargs:
+            headers.update(kwargs)
+
+        return headers
+
+    @staticmethod
+    def get_results(content):
+        """
+        :param content: response from url
+        :return: dict of results
+        """
+
+        results = content["response"]["results"][0]
+
+        return results if results else []
