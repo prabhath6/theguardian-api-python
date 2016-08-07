@@ -62,7 +62,8 @@ class TestContent(unittest.TestCase):
         section_content = section.get_content_response()
         results = section.get_results(section_content)
 
-        self.assertIs(type(results), dict)
+        self.assertIs(type(results), list)
+        self.assertIn("editions", results[0].keys())
 
     def test_section_get_result_with_exception(self):
 

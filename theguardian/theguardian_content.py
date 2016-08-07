@@ -126,11 +126,11 @@ class Content:
 
         """
         :param content: response from url
-        :return: dict of results
+        :return: list of results
         """
 
         if isinstance(content, dict):
-            results = content["response"]["results"][0]
+            results = content["response"]["results"]
         else:
             raise TypeError("Content of type dictionary required as input.")
 
