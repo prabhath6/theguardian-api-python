@@ -23,7 +23,7 @@ This is a simple and lightweight Python client for thegaurdian api.
 * response contains minimal detail by default but more data can be exposed using parameters.
 * results are returned as paginated list of containing, by default, 10 entries per page.
 
-### Python Content endpoint
+### Content endpoint
 This Content module can be used as an interface for the content endpoint provided
 by theguardian.
 ```python
@@ -47,5 +47,38 @@ print("All results {}." .format(all_results))
 
 # actual response
 print("Response {response}" .format(response=json_content))
+```
+### Section endpoint
+This Section module can be used as an interface for the sections endpoint provided
+by theguardian. This can be used to access various sections within the theguardian's
+data. Some example of sections query parameters(q) are business, sports and technology.
+```python
+"""
+This example deals with returning content of section.
+"""
+from theguardian import theguardian_section
+from theguardian import theguardian_content
+
+
+# get the sports sections
+headers = {"q": "sports"}  # q=query parameter/search parameter
+section = theguardian_section.Section(api='test', **headers)
+
+# get the results
+section_content = section.get_content_response()
+results = section.get_results(section_content)
+
+# get different editions from the results
+editions = results['editions']
+
+# get uk/sports edition apiUrl
+uk_sports = [edi["apiUrl"] for edi in editions if edi["id"] == "uk/sport"][0]
+
+# use this api url to sports content
+content = theguardian_content.Content(api='test', url=uk_sports)
+
+# get section response
+content_response = content.get_content_response()
+print(content_response)
 ```
 For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/tree/master/examples) folder.

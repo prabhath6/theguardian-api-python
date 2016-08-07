@@ -8,19 +8,24 @@ import copy
 
 class Content:
 
-    def __init__(self, api, **kwargs):
+    def __init__(self, api, url=None, **kwargs):
         """
         :param api: api_key
+        :param url: optional url to get the content.
         :param kwargs: optional header data
         :return: None
         """
 
-        self.base_url = "https://content.guardianapis.com/search"
         self.__headers = {
             "api-key": api,
             "format": "json"
         }
         self.__request_response = None
+
+        if url is None:
+            self.base_url = "https://content.guardianapis.com/search"
+        else:
+            self.base_url = url
 
         if kwargs:
             for key, value in kwargs.items():
@@ -43,18 +48,22 @@ class Content:
         return res
 
     def get_request_response(self, headers=None):
+
         """
         :param headers: optional headers
         :return: raw request response
         """
+
         self.__request_response = self.__response(headers)
         return self.__request_response
 
     def get_content_response(self, headers=None):
+
         """
         :param headers: optional header
         :return: json content of the response for the request
         """
+
         self.get_request_response(headers)
         return self.__request_response.json()
 
@@ -94,6 +103,7 @@ class Content:
 
     @staticmethod
     def __response_for_id(ids, **kwargs):
+
         """
         :param ids: IDs are usually in the form
         of url/section/YYYY/month/DD/name-of-article/
@@ -113,11 +123,15 @@ class Content:
 
     @staticmethod
     def get_results(content):
+
         """
         :param content: response from url
         :return: dict of results
         """
 
-        results = content["response"]["results"][0]
+        if isinstance(content, dict):
+            results = content["response"]["results"][0]
+        else:
+            raise TypeError("Content of type dictionary required as input.")
 
         return results if results else []
