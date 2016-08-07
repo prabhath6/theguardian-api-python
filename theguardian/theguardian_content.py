@@ -9,6 +9,11 @@ import copy
 class Content:
 
     def __init__(self, api, **kwargs):
+        """
+        :param api: api_key
+        :param kwargs: optional header data
+        :return: None
+        """
 
         self.base_url = "https://content.guardianapis.com/search"
         self.__headers = {
