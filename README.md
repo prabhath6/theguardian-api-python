@@ -69,7 +69,7 @@ section_content = section.get_content_response()
 results = section.get_results(section_content)
 
 # get different editions from the results
-editions = results['editions']
+editions = results[0]['editions']
 
 # get uk/sports edition apiUrl
 uk_sports = [edi["apiUrl"] for edi in editions if edi["id"] == "uk/sport"][0]
