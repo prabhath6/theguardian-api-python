@@ -48,4 +48,4 @@ print("All results {}." .format(all_results))
 # actual response
 print("Response {response}" .format(response=json_content))
 ```
-For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/examples) folder.
+For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/tree/master/examples) folder.
