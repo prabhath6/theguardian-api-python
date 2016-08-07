@@ -63,8 +63,8 @@ class TestContent(unittest.TestCase):
         res = content.find_by_id(ids)
         result = content.get_results(res)
 
-        self.assertIs(type(result), dict)
-        self.assertEqual(result['id'], ids)
+        self.assertIs(type(result), list)
+        self.assertEqual(result[0]['id'], ids)
 
     def test_content_with_headers(self):
 
@@ -79,7 +79,7 @@ class TestContent(unittest.TestCase):
         res = content.get_content_response()
         result = content.get_results(res)
 
-        self.assertIs(type(result), dict)
+        self.assertIs(type(result), list)
 
     def test_content_get_result_with_exception(self):
 

@@ -7,7 +7,7 @@ import copy
 
 class Section:
 
-    def __init__(self, api, **kwargs):
+    def __init__(self, api, url=None, **kwargs):
 
         """
         :param api: api-key
@@ -15,12 +15,16 @@ class Section:
         :return:
         """
 
-        self.base_url = "https://content.guardianapis.com/sections"
         self.__request_response = None
         self.__headers = {
             "api-key": api,
             "format": "json"
         }
+
+        if not url:
+            self.base_url = "https://content.guardianapis.com/sections"
+        else:
+            self.base_url = url
 
         if kwargs:
             for key, value in kwargs.items():
@@ -68,11 +72,11 @@ class Section:
 
         """
         :param section_content: dict of response recieved
-        :return: dictionary of results in that page
+        :return: list of results in that page
         """
 
         if isinstance(section_content, dict):
-            results = section_content["response"]["results"][0]
+            results = section_content["response"]["results"]
         else:
             raise TypeError("Section content of type dictionary required as input.")
 
