@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 The content endpoint (/search) returns
 all pieces of content in the API.
@@ -65,7 +63,7 @@ class Content:
         if self.__request_response:
             response_content = copy.deepcopy(self.__request_response.json())
         else:
-            self.get_request_response()
+            self.get_request_response(headers)
             response_content = copy.deepcopy(self.__request_response.json())
 
         headers_content = response_content['response']
