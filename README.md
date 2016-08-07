@@ -81,4 +81,23 @@ content = theguardian_content.Content(api='test', url=uk_sports)
 content_response = content.get_content_response()
 print(content_response)
 ```
+### Edition endpoint
+The editions endpoint returns all editions in the API.
+Editions are the different front main pages of the Guardian site we have.
+At current thguardian supports editions for the United Kingdom(uk), the United States(us) and Australia(au).
+```python
+from theguardian import theguardian_edition
+
+# create edition
+edition = theguardian_edition.Edition(api='test')
+
+# get all results of a page
+json_content = edition.get_content_response()
+all_results = edition.get_results(json_content)
+
+# get all the sections webUrl
+for result in all_results:
+    print("{id} - {url}" .format(id=result["id"], url=result["webUrl"]))
+
+```
 For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/tree/master/examples) folder.
