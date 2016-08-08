@@ -100,4 +100,21 @@ for result in all_results:
     print("{id} - {url}" .format(id=result["id"], url=result["webUrl"]))
 
 ```
+### Tag endpoint
+The tags endpoint returns all tags in the API. All Guardian content
+is manually categorised using these tags, of which there are more than 50,000.
+```python
+"""
+This example deals with returning references of specific tags.
+"""
+from theguardian import theguardian_tag
+
+header = {
+        "q": "apple",
+        "section": "technology",
+    }
+t = theguardian_tag.Tag(api="test", **header)
+print(t.get_references_in_page(1))
+
+```
 For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/tree/master/examples) folder.
