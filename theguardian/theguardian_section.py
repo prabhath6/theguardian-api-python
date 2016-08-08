@@ -62,7 +62,7 @@ class Section:
         :return: dict of response
         """
 
-        if not self.__request_response:
+        if self.__request_response is None or headers:
             self.__request_response = self.get_request_response(headers)
 
         return self.__request_response.json()
@@ -71,7 +71,7 @@ class Section:
     def get_results(section_content):
 
         """
-        :param section_content: dict of response recieved
+        :param section_content: dict of response received
         :return: list of results in that page
         """
 
