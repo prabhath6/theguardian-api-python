@@ -6,7 +6,7 @@ import unittest
 from theguardian import theguardian_section
 
 
-class TestContent(unittest.TestCase):
+class TestSection(unittest.TestCase):
 
     """
     Mainly built to test the functionality

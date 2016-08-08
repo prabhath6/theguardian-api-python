@@ -1,5 +1,5 @@
 """
-The sections endpoint(/sections) returns all sections in the API.
+The edition endpoint returns all editions in the API.
 """
 from theguardian import theguardian_section
 

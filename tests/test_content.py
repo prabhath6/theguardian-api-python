@@ -88,5 +88,30 @@ class TestContent(unittest.TestCase):
 
         self.assertRaises(TypeError, section.get_results, "some random text")
 
+    def test_section_get_references_correct_pages(self):
+
+        api_key = "test"
+        content = theguardian_content.Content(api_key, **{
+            "q": "apple",
+            "section": "technology",
+        })
+        refs = content.get_references_in_page(page_number=1)
+        refs2 = content.get_references_in_page()
+
+        self.assertIs(type(refs), list)
+        self.assertIs(type(refs2), list)
+
+    def test_section_get_references_incorrect_pages(self):
+
+        api_key = "test"
+        content = theguardian_content.Content(api_key, **{
+            "q": "apple",
+            "section": "technology",
+        })
+
+        head = content.response_headers()
+
+        self.assertRaises(ValueError, content.get_references_in_page, page_number=head["pages"] + 1)
+
 if __name__ == "__main__":
     unittest.main()
