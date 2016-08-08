@@ -121,3 +121,37 @@ print(t.get_references_in_page(1))
 
 ```
 For more examples refer the [examples](https://github.com/prabhath6/theguardian-api-python/tree/master/examples) folder.
+### Install
+1. Create a virtual environment.
+2. Clone or download the repo.
+3. Pip install requirements.
+4. Run the tests
+5. Copy theguardian folder into virtual environment.
+
+```
+mkdir sample_folder
+cd sample_folder
+virtualenv -p /usr/bin/python3 guardian
+
+git clone https://github.com/prabhath6/theguardian-api-python.git
+cd theguardian-api-python
+
+source ../guardian/bin/activate
+pip install -r requirements.txt
+
+python test.py
+
+cp -r theguardian ../guardian/lib/python3.5
+```
+#### Notes
+1. Requires python3.
+2. Designed to work with only json data.
+3. Built as a simple weekend project.
+4. Refer examples for better understanding.
+
+### Notes on Patches/Pull requests
+* Fork the repo.
+* Add features or fix bugs.
+* Add tests to features or bug fixes.
+* Send pull requests once done building.
+
