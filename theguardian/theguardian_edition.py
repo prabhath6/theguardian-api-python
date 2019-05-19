@@ -13,5 +13,5 @@ class Edition(theguardian_section.Section):
         :param kwargs: optional headers
         :return:
         """
-        base_url = "http://content.guardianapis.com/editions"
+        base_url = "https://content.guardianapis.com/editions"
         super(Edition, self).__init__(api, base_url, **kwargs)
