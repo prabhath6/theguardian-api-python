@@ -1,7 +1,7 @@
 # theguardian-api-python
 This is a simple and lightweight Python client for thegaurdian api.
 
-[![GNU license](https://camo.githubusercontent.com/940baba6e10de9f9bd8616bf42804619f2fb07fc/687474703a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d474e5576332d627269676874677265656e2e737667)](https://github.com/prabhath6/theguardian-api-python/blob/master/LICENSE) [![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/theguardian-api-python/developers_contributers_users)
+[![GNU license](https://camo.githubusercontent.com/940baba6e10de9f9bd8616bf42804619f2fb07fc/687474703a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d474e5576332d627269676874677265656e2e737667)](https://github.com/prabhath6/theguardian-api-python/blob/master/LICENSE) [![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/theguardian-api-python/developers_contributers_users) [![Build Status](https://travis-ci.org/prabhath6/theguardian-api-python.svg?branch=master)](https://travis-ci.org/prabhath6/theguardian-api-python)
 
 
 ### theguardian Documentation
