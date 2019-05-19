@@ -15,7 +15,7 @@ class Tag(theguardian_section.Section):
         :param kwargs: optional headers
         :return:
         """
-        base_url = "http://content.guardianapis.com/tags"
+        base_url = "https://content.guardianapis.com/tags"
         super(Tag, self).__init__(api, base_url, **kwargs)
 
     def get_references_in_page(self, page_number=1):
