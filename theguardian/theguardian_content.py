@@ -16,6 +16,7 @@ class Content:
         :return: None
         """
 
+        self.session = requests.Session()
         self.__headers = {
             "api-key": api,
             "format": "json"
@@ -43,7 +44,7 @@ class Content:
         else:
             headers.update(self.__headers)
 
-        res = requests.get(self.base_url, headers)
+        res = self.session.get(self.base_url, headers=headers)
 
         return res
 

@@ -15,6 +15,7 @@ class Section:
         :return:
         """
 
+        self.session = requests.Session()
         self.__request_response = None
         self.__headers = {
             "api-key": api,
@@ -41,7 +42,7 @@ class Section:
             header = self.__headers
         else:
             header.update(self.__headers)
-        res = requests.get(self.base_url, header)
+        res = self.session.get(self.base_url, headers=header)
 
         return res
 
