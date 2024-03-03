@@ -25,7 +25,7 @@ class TestSection(unittest.TestCase):
         api_key = "tests"
         res = theguardian_section.Section(api_key).get_request_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
 
     def test_section_get_direct_content(self):
 
@@ -51,7 +51,7 @@ class TestSection(unittest.TestCase):
         res = section.get_request_response()
         section_content = section.get_content_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
         self.assertIn("message", section_content.keys())
         self.assertEqual("Invalid authentication credentials", section_content["message"])
 

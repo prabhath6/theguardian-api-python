@@ -23,7 +23,7 @@ class TestContent(unittest.TestCase):
 
         api_key = "tests"
         res = theguardian_content.Content(api_key).get_request_response()
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
 
     def test_content_response_header(self):
 
