@@ -24,7 +24,7 @@ class TestTag(unittest.TestCase):
         api_key = "tests"
         res = theguardian_tag.Tag(api_key).get_request_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
 
     def test_tag_get_direct_content(self):
 
@@ -50,7 +50,7 @@ class TestTag(unittest.TestCase):
         res = tag.get_request_response()
         tag_content = tag.get_content_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
         self.assertIn("message", tag_content.keys())
         self.assertEqual("Invalid authentication credentials", tag_content["message"])
 

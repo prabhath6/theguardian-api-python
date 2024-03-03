@@ -24,7 +24,7 @@ class TestEdition(unittest.TestCase):
         api_key = "tests"
         res = theguardian_edition.Edition(api_key).get_request_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
 
     def test_edition_get_direct_content(self):
 
@@ -50,7 +50,7 @@ class TestEdition(unittest.TestCase):
         res = edition.get_request_response()
         edition_content = edition.get_content_response()
 
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)
         self.assertIn("message", edition_content.keys())
         self.assertEqual("Invalid authentication credentials", edition_content["message"])
 
